@@ -1,7 +1,7 @@
-import React, {ReactElement} from 'react';
+import React, { ReactElement} from 'react';
 import { useEffect, useState } from 'react';
 import './Home.css';
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 type Docs = {
@@ -30,6 +30,12 @@ const Home = (): ReactElement => {
     getPosts()
   }, [])
 
+
+  const handleDelete = async (id: string) => {
+    await deleteDoc(doc(db, "posts", id))
+    window.location.href = '/'
+  }
+
   return (
     <div className="homePage">
       {postList.map((doc, i) => {
@@ -43,7 +49,7 @@ const Home = (): ReactElement => {
             </div>
             <div className="nameAndDeleteButton">
               <h3>@{doc.author.userName}</h3>
-              <button>Delete</button>
+              <button onClick={() => handleDelete(doc.id)}>Delete</button>
             </div>
           </div>
         )
