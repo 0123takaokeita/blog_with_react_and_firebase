@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './CreatePost.css';
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 
-const CreatePost = () => {
+const CreatePost = ({ isAuth }: {isAuth: boolean}) => {
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   const navigate = useNavigate();
@@ -21,15 +21,19 @@ const CreatePost = () => {
     navigate('/')
   }
 
+  useEffect(() => {
+    if(!isAuth) navigate('/login')
+  },[])
+
   return (
     <div className="createPostPage">
       <div className="createPostContainer">
-        <h1>記事を投稿する</h1>
-        <label>タイトル</label>
+        <h1>New Post</h1>
+        <label>Title</label>
         <input type='text' onChange={(e) => setTitle(e.target.value)} />
-        <label>本文</label>
+        <label>Content</label>
         <textarea onChange={(e) => setText(e.target.value)} />
-        <button className="postButton" onClick={createPost}>投稿する</button>
+        <button className="postButton" onClick={createPost}>Send</button>
       </div>
     </div>
   )

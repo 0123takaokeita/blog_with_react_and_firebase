@@ -12,9 +12,11 @@ const Navbar = ( { isAuth }: {isAuth: boolean}) => {
   return (
       <nav>
         <Link to='/'>{ houseIcon }Home</Link>
-        <Link to='/createpost'>{ fileIcon }CreatePost</Link>
         { isAuth ? (
-          <Link to='/logout'>{ rightIcon }Logout</Link>
+          <>
+            <Link to='/createpost'>{ fileIcon }CreatePost</Link>
+            <Link to='/logout'>{ rightIcon }Logout</Link>
+          </>
         ) : (
           <Link to='/login'>{ rightIcon }Login</Link>
         )}
