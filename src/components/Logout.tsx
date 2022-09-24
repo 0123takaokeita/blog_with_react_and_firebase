@@ -13,7 +13,6 @@ const Logout = ({ setIsAuth }: loginProps ) => {
   const logoutwWithGoogle = () => {
     signOut(auth)
     .then(() => {
-      console.warn('success!!')
       localStorage.clear()
       setIsAuth(false)
       navigate("/login")

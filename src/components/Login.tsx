@@ -1,5 +1,5 @@
 import React from "react";
-import {signInWithPopup} from "firebase/auth";
+import {Auth, signInWithPopup} from "firebase/auth";
 import { auth, provider } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 
@@ -12,9 +12,8 @@ const Login = ({ setIsAuth }: loginProps ) => {
 
   const loginwWithGoogle = () => {
     signInWithPopup(auth, provider)
-    .then((result) => {
-      console.warn(result)
-      localStorage.setItem('isAuth', 'true')
+    .then((result)=> {
+      localStorage.setItem('isAuth', 'takao')
       setIsAuth(true)
       navigate('/');
     }) .catch((error) => {

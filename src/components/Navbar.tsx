@@ -8,12 +8,16 @@ const houseIcon = <FontAwesomeIcon icon={faHouse} />
 const fileIcon = <FontAwesomeIcon icon={faFilePen} />
 const rightIcon = <FontAwesomeIcon icon={faArrowRightToBracket} />
 
-const Navbar = () => {
+const Navbar = ( { isAuth }: {isAuth: boolean}) => {
   return (
       <nav>
         <Link to='/'>{ houseIcon }Home</Link>
         <Link to='/createpost'>{ fileIcon }CreatePost</Link>
-        <Link to='/login'>{ rightIcon }Login</Link>
+        { isAuth ? (
+          <Link to='/logout'>{ rightIcon }Logout</Link>
+        ) : (
+          <Link to='/login'>{ rightIcon }Login</Link>
+        )}
       </nav>
   )
 };
