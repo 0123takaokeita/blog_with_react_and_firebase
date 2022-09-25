@@ -1,10 +1,10 @@
 import React from "react";
-import {Auth, signInWithPopup} from "firebase/auth";
+import { signInWithPopup} from "firebase/auth";
 import { auth, provider } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 
 type loginProps = {
-  setIsAuth: React.Dispatch<React.SetStateAction<boolean>>
+  setIsAuth: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const Login = ({ setIsAuth }: loginProps ) => {
@@ -12,11 +12,11 @@ const Login = ({ setIsAuth }: loginProps ) => {
 
   const loginwWithGoogle = () => {
     signInWithPopup(auth, provider)
-    .then((result)=> {
-      localStorage.setItem('isAuth', 'takao')
-      setIsAuth(true)
+    .then(()=> {
+      localStorage.setItem('isAuth', 'true')
+      setIsAuth('true')
       navigate('/');
-    }) .catch((error) => {
+    }).catch((error) => {
       console.error('error', error)
     });
 };

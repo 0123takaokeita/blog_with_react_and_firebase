@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 
 type loginProps = {
-  setIsAuth: React.Dispatch<React.SetStateAction<boolean>>
+  setIsAuth: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const Logout = ({ setIsAuth }: loginProps ) => {
@@ -14,12 +14,12 @@ const Logout = ({ setIsAuth }: loginProps ) => {
     signOut(auth)
     .then(() => {
       localStorage.clear()
-      setIsAuth(false)
+      setIsAuth(null)
       navigate("/login")
     }) .catch((error) => {
       console.error('error', error)
     });
-};
+  };
 
   return (
     <div>

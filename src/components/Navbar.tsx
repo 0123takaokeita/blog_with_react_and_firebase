@@ -8,7 +8,7 @@ const houseIcon = <FontAwesomeIcon icon={faHouse} />
 const fileIcon = <FontAwesomeIcon icon={faFilePen} />
 const rightIcon = <FontAwesomeIcon icon={faArrowRightToBracket} />
 
-const Navbar = ( { isAuth }: {isAuth: boolean}) => {
+const Navbar = ( { isAuth }: {isAuth: string | null}) => {
   return (
       <nav>
         <Link to='/'>{ houseIcon }Home</Link>

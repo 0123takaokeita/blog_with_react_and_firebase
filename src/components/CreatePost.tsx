@@ -4,7 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import { useNavigate } from 'react-router-dom';
 
-const CreatePost = ({ isAuth }: {isAuth: boolean}) => {
+const CreatePost = ({ isAuth }: {isAuth: string | null}) => {
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   const navigate = useNavigate();

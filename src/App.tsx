@@ -1,4 +1,4 @@
-import {ReactElement, useState} from 'react'
+import { useState} from 'react'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home       from './components/Home';
@@ -8,9 +8,9 @@ import Logout     from './components/Logout';
 import Navbar     from './components/Navbar';
 
 function App(){
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<string | null>(localStorage.getItem('isAuth'));
 
-  return(
+  return (
     <Router>
       <Navbar isAuth={ isAuth } />
       <Routes>
