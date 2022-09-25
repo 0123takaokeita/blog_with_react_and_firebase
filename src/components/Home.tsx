@@ -2,7 +2,7 @@ import React, { ReactElement} from 'react';
 import { useEffect, useState } from 'react';
 import './Home.css';
 import { getDocs, collection, doc, deleteDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db, auth } from '../firebase';
 
 type Docs = {
   id: string,
@@ -49,7 +49,9 @@ const Home = (): ReactElement => {
             </div>
             <div className="nameAndDeleteButton">
               <h3>@{doc.author.userName}</h3>
-              <button onClick={() => handleDelete(doc.id)}>Delete</button>
+              { (doc.author.id === auth.currentUser?.uid) && (
+                <button onClick={() => handleDelete(doc.id)}>Delete</button>
+              ) }
             </div>
           </div>
         )
